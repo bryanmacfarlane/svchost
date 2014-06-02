@@ -1,0 +1,4 @@
+node_modules/
+samples/**/*.err
+samples/**/*.log
+samples/**/*.out

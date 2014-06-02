@@ -1,0 +1,27 @@
+{
+  "name": "svchost",
+  "version": "0.1.0",
+  "description": "Node Service Host",
+  "main": "lib/svchost.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bryanmacfarlane/svchost.git"
+  },
+  "keywords": [
+    "node",
+    "service",
+    "restarts"
+  ],
+  "author": "Bryan MacFarlane",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/bryanmacfarlane/svchost/issues"
+  },
+  "homepage": "https://github.com/bryanmacfarlane/svchost",
+  "dependencies": {
+    "dateformat": "~1.0.8-1.2.3"
+  }
+}
