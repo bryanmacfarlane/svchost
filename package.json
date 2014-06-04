@@ -22,6 +22,5 @@
   },
   "homepage": "https://github.com/bryanmacfarlane/svchost",
   "dependencies": {
-    "dateformat": "~1.0.8-1.2.3"
   }
 }

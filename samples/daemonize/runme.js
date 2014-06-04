@@ -1,9 +1,13 @@
-var appd = require('../../lib/svchost');
+var svchost = require('../../lib/svchost');
 
-appd.daemonize('./runAndExit',       // app to run - relative or fully qualified
-	           ['fail', 'another'],  // args
-	           {logPath: './', logName:'hostIt'});
+var child = svchost.daemonize('./runAndExit',   // app to run - relative or fully qualified
+	           ['fail', 'another'],             // args
+	           {outputPath: __dirname}); // optional, defaults to dir of app to run
 
-process.on('uncaughtException', function(err) {
-  console.log('Caught exception: ' + err);
+if (child) {
+	console.log('started in background on pid: ', child.pid);
+}
+
+child.on('uncaughtException', function(err) {
+	console.err('Caught exception: ' + err);
 });
