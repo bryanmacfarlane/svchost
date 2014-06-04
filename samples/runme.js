@@ -1,27 +1,45 @@
 var sh = require('../lib/svchost');
 
+var banner = function(str) {
+	console.log('--------------------------------------------');
+	console.log(str);
+	console.log('--------------------------------------------');
+}
+
+var formatOutput = function(level, output) {
+	return '[' + level + ']' + (new Date()).toTimeString() + ': ' + output;
+}
+
 var host = new sh.SvcHost();
 host.on('start', function(pid, starts){
-	console.log('started (' + pid + ') - ' + starts + ' starts');
+	banner('started (' + pid + ') - ' + starts + ' starts');
 });
 
 host.on('restart', function(){
-	console.log('restart.  ');
+	banner('restart.  ');
 });		
 
 host.on('exit', function(code, reason){
-	console.log('exit (' + code + ') : ' + reason);
+	banner('exit (' + code + ') : ' + reason);
 });	
 
 host.on('abort', function(){
-	console.log('abort after restarts');
-});		
+	banner('abort after restarts');
+});
+
+host.on('stdout', function(data){
+	process.stdout.write(formatOutput('out', data));
+});
+
+host.on('stderr', function(data){
+	process.stdout.write(formatOutput('err', data));
+});
 
 //
 // api consumer can control restarts, sleeps, grow etc...
 // this example allows 5 starts with a wait of a second per restart in between
 //
-var maxStarts = 5;
+var maxStarts = 3;
 var RESTART_DELAY = 1000;  // 1 sec
 
 var handleRestart = function(starts, relaunch) {
