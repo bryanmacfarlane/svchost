@@ -1,4 +1,5 @@
 var sh = require('../lib/svchost');
+var path = require('path');
 
 var banner = function(str) {
 	console.log('--------------------------------------------');
@@ -57,7 +58,7 @@ var handleRestart = function(starts, relaunch) {
 	}
 }
 
-host.start('./badserver.js',           // app.  relative or absolute path
+host.start(path.join(__dirname, 'badserver.js'),           // absolute path (better for running as service)
 			[],                        // args 
 			{outputPath: __dirname},   // optional.  defaults to apps directory
 			handleRestart);  
