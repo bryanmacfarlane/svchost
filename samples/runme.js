@@ -60,5 +60,4 @@ var handleRestart = function(starts, relaunch) {
 
 host.start(path.join(__dirname, 'badserver.js'),           // absolute path (better for running as service)
 			[],                        // args 
-			{outputPath: __dirname},   // optional.  defaults to apps directory
 			handleRestart);  
