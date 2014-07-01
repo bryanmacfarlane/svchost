@@ -59,5 +59,9 @@ var handleRestart = function(starts, relaunch) {
 }
 
 host.start(path.join(__dirname, 'badserver.js'),           // absolute path (better for running as service)
-			[],                        // args 
+			{ 
+				// args:[], 
+				// uid: 501,
+				env: process.env, 
+			},                       
 			handleRestart);  
